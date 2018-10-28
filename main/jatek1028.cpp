@@ -11,7 +11,7 @@ typedef struct node {
 	int idx;
 	node *left;
 	node *right;
-}node;  // Struktura egy csomoponthoz, index-e, illetve a két leszarmazottjahoz mutato pinter
+}node;  // Struktura egy csomoponthoz, index-e, illetve a kÃ©t leszarmazottjahoz mutato pinter
 
 typedef struct inventory {
 	int kaja;
@@ -103,7 +103,7 @@ bool harc(node *root) {
 	{
 		van_harc = true; return van_harc;
 	}
-}  // Ezt átkéne gondolni, mert így nincs értelme ha nem tudom hogy néz ki a file.
+}  // Ezt Ã¡tkÃ©ne gondolni, mert Ã­gy nincs Ã©rtelme ha nem tudom hogy nÃ©z ki a file.
 
 int main()
 {
