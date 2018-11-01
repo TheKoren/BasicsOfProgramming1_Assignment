@@ -14,8 +14,8 @@ typedef struct node {
 	node *right;
 	int harcidx; // Amennyiben ez 0, akkor nincsen harc; ha meg nem 0, akkor az a leny indexet mutatja.
 	int boltidx; // Amennyiben ez 0, akkor nincsen bolt; ha meg nem 0, akkor a "fizet" inputra, ennyi levonodik a penzbol
-	//, amennyiben nem lenne az kisebb 0-nal. Õgy ez meg deedre vagy inventoryba kerul. Hozzateszem hogy a bolt != bolttal, azaz itt nem feltetlen vasarlas tortenik
-}node;  // Struktura egy csomoponthoz, index-e, illetve a kÈt leszarmazottjahoz mutato pointer
+	//, amennyiben nem lenne az kisebb 0-nal. √çgy ez meg deedre vagy inventoryba kerul. Hozzateszem hogy a bolt != bolttal, azaz itt nem feltetlen vasarlas tortenik
+}node;  // Struktura egy csomoponthoz, index-e, illetve a k√©t leszarmazottjahoz mutato pointer
 
 typedef struct inventory {
 	int kaja;
@@ -201,7 +201,7 @@ node* fatolt(int *d) {
 		csucspontok[i].harcidx = harc;
 		csucspontok[i].boltidx = bolt;
 
-	} // Ennel a pontnal van egy node tipusu tombom, ami tartalmazza az osszes csomopontot azon belul annak indexÈt, lesz·rmazottait, bolt illetve harciindexÈt.
+	} // Ennel a pontnal van egy node tipusu tombom, ami tartalmazza az osszes csomopontot azon belul annak index√©t, lesz√°rmazottait, bolt illetve harciindex√©t.
 	fclose(fp);
 	*d = n;
 	return csucspontok;
