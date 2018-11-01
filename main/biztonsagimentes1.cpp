@@ -11,7 +11,7 @@ typedef struct node {
 	int idx;
 	node *left;
 	node *right;
-}node;  // Struktura egy csomoponthoz, index-e, illetve a két leszarmazottjahoz mutato pinter
+}node;  // Struktura egy csomoponthoz, index-e, illetve a kÃ©t leszarmazottjahoz mutato pinter
 
 typedef struct inventory {
 	int kaja;
