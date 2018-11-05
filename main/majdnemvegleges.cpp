@@ -13,14 +13,14 @@ typedef struct node {
 	node *right;
 	int harcidx; // Amennyiben ez 0, akkor nincsen harc; ha meg nem 0, akkor az a leny indexet mutatja.
 	int boltidx; // Amennyiben ez 0, akkor nincsen bolt; ha meg nem 0, akkor a "fizet" inputra, ennyi levonodik a penzbol
-	//, amennyiben nem lenne az kisebb 0-nal. Így ez meg deedre vagy inventoryba kerul. Hozzateszem hogy a bolt != bolttal, azaz itt nem feltetlen vasarlas tortenik
-}node;  // Struktura egy csomoponthoz, index-e, illetve a két leszarmazottjahoz mutato pointer
+	//, amennyiben nem lenne az kisebb 0-nal. Ãgy ez meg deedre vagy inventoryba kerul. Hozzateszem hogy a bolt != bolttal, azaz itt nem feltetlen vasarlas tortenik
+}node;  // Struktura egy csomoponthoz, index-e, illetve a kÃ©t leszarmazottjahoz mutato pointer
 
 typedef struct inventory {
 	int kaja;
 	int penz; // Elkepzelheto hogy ennek nem lesz ertelme
 	int gomb;
-}inventory;		//Inventory, igazából a megszerezhetõ tárgyakat tartalmazza
+}inventory;		//Inventory, igazÃ¡bÃ³l a megszerezhetÃµ tÃ¡rgyakat tartalmazza
 
 typedef struct karakter {
 	char nev[21];
@@ -33,13 +33,13 @@ typedef struct creature {
 	int idx;
 	int hp;
 	int agi;
-}creature;	   //Történet során különbözõ lények strukturaja
+}creature;	   //TÃ¶rtÃ©net sorÃ¡n kÃ¼lÃ¶nbÃ¶zÃµ lÃ©nyek strukturaja
 
 typedef struct story {
 	int index;
 	char szoveg[4000];
 
-}story;			//A könnyebb kezelés érdekében, a történetet indexxel megáldva struktruaban tarolom
+}story;			//A kÃ¶nnyebb kezelÃ©s Ã©rdekÃ©ben, a tÃ¶rtÃ©netet indexxel megÃ¡ldva struktruaban tarolom
 
 node* newnode(int i) {
 	node* newnode;
@@ -49,17 +49,17 @@ node* newnode(int i) {
 	newnode->right = NULL;
 	return newnode;
 
-}//A (bináris) fában egy új csomópont létrejöttéért felelõs függvény			
+}//A (binÃ¡ris) fÃ¡ban egy Ãºj csomÃ³pont lÃ©trejÃ¶ttÃ©Ã©rt felelÃµs fÃ¼ggvÃ©ny			
 
 node* insertleft(node *root, int i) {
 	root->left = newnode(i);
 	return root->left;
-} //A fában, ezzel a függvénnyel hozzuk létre egy adott gyökérponthoz a bal oldali leszármazottját.  
+} //A fÃ¡ban, ezzel a fÃ¼ggvÃ©nnyel hozzuk lÃ©tre egy adott gyÃ¶kÃ©rponthoz a bal oldali leszÃ¡rmazottjÃ¡t.  
 
 node* insertright(node *root, int i) {
 	root->right = newnode(i);
 	return root->right;
-} //A fában ezzel a függvénnyel hozzuk meg a gyökérnek a jobboldali leszármazottját
+} //A fÃ¡ban ezzel a fÃ¼ggvÃ©nnyel hozzuk meg a gyÃ¶kÃ©rnek a jobboldali leszÃ¡rmazottjÃ¡t
 
 node* lepes(node *root, irany k, node *p, int hossz) {
 
@@ -83,7 +83,7 @@ node* lepes(node *root, irany k, node *p, int hossz) {
 	}
 			 
 	}
-} //Ezzel a függvénnyel történik meg a léptetés, iránytól függõen
+} //Ezzel a fÃ¼ggvÃ©nnyel tÃ¶rtÃ©nik meg a lÃ©ptetÃ©s, irÃ¡nytÃ³l fÃ¼ggÃµen
 
 karakter penzes(karakter kalandor, int ar, int *d) {
 	char ch;
@@ -247,7 +247,7 @@ node* fatolt(int *d) {
 		csucspontok[i].harcidx = harc;
 		csucspontok[i].boltidx = bolt;
 
-	} // Ennel a pontnal van egy node tipusu tombom, ami tartalmazza az osszes csomopontot azon belul annak indexét, leszármazottait, bolt illetve harciindexét.
+	} // Ennel a pontnal van egy node tipusu tombom, ami tartalmazza az osszes csomopontot azon belul annak indexÃ©t, leszÃ¡rmazottait, bolt illetve harciindexÃ©t.
 	fclose(fp);
 	*d = n;
 	return csucspontok;
