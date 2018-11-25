@@ -9,13 +9,13 @@
 typedef enum irany { JOBB, BAL }irany; // Ket irany, a faba a leszarmazottakhoz
 
 typedef struct node {
-	int idx; // Csomópont indexe
-	node *left; // Csomópont bal oldali leszármazottjára mutató pointer
-	node *right; // Csomópont jobb oldali leszármazottjára mutató pointer.
+	int idx; // CsomÃ³pont indexe
+	node *left; // CsomÃ³pont bal oldali leszÃ¡rmazottjÃ¡ra mutatÃ³ pointer
+	node *right; // CsomÃ³pont jobb oldali leszÃ¡rmazottjÃ¡ra mutatÃ³ pointer.
 	int harcidx; // Amennyiben ez 0, akkor nincsen harc; ha meg nem 0, akkor az a leny indexet mutatja.
 	int boltidx; // Amennyiben ez 0, akkor nincsen bolt; ha meg nem 0, akkor a "fizet" inputra, ennyi levonodik a penzbol
-	//, amennyiben nem lenne az kisebb 0-nal. Így ez meg deedre vagy inventoryba kerul. Hozzateszem hogy a bolt != bolttal, azaz itt nem feltetlen vasarlas tortenik
-}node;  // Struktura egy csomoponthoz, index-e, illetve a két leszarmazottjahoz mutato pointer
+	//, amennyiben nem lenne az kisebb 0-nal. Ãgy ez meg deedre vagy inventoryba kerul. Hozzateszem hogy a bolt != bolttal, azaz itt nem feltetlen vasarlas tortenik
+}node;  // Struktura egy csomoponthoz, index-e, illetve a kÃ©t leszarmazottjahoz mutato pointer
 
 typedef struct inventory {
 	int kaja;
@@ -23,7 +23,7 @@ typedef struct inventory {
 	int gomb;
 	int bunda;
 	int erme;
-}inventory;		//Inventory, igazából a megszerezhetõ tárgyakat tartalmazza
+}inventory;		//Inventory, igazÃ¡bÃ³l a megszerezhetÅ‘ tÃ¡rgyakat tartalmazza
 
 typedef struct karakter {
 	char nev[21];
@@ -36,19 +36,19 @@ typedef struct creature {
 	int idx;
 	int hp;
 	int agi;
-}creature;	   //Történet során különbözõ lények strukturaja
+}creature;	   //TÃ¶rtÃ©net sorÃ¡n kÃ¼lÃ¶nbÃ¶zÅ‘ lÃ©nyek strukturaja
 
 typedef struct story {
 	int index;
 	char szoveg[4000];
 
-}story;			//A könnyebb kezelés érdekében, a történetet indexxel megáldva struktruaban tarolom
+}story;			//A kÃ¶nnyebb kezelÃ©s Ã©rdekÃ©ben, a tÃ¶rtÃ©netet indexxel megÃ¡ldva struktruaban tarolom
 
 typedef struct valami{	
 	int bal;
 	int jobb;
 	node *ptr;
-}valami;			//A fa elkészítésénél van erre szükség NE PISZKÁLD! Bõvebben lent		
+}valami;			//A fa elkÃ©szÃ­tÃ©sÃ©nÃ©l van erre szÃ¼ksÃ©g NE PISZKÃLD! BÅ‘vebben lent		
 
 
 node* newnode(int i, int harc, int bolt) {
@@ -61,38 +61,38 @@ node* newnode(int i, int harc, int bolt) {
 	newnode->right = NULL;
 	return newnode;
 
-}//A (bináris) fában egy új csomópont létrejöttéért felelõs függvény			
+}//A (binÃ¡ris) fÃ¡ban egy Ãºj csomÃ³pont lÃ©trejÃ¶ttÃ©Ã©rt felelÅ‘s fÃ¼ggvÃ©ny			
 
 /*node* insertleft(node *root, int i) {
 	root->left = newnode(i);
 	return root->left;
-} //A fában, ezzel a függvénnyel hozzuk létre egy adott gyökérponthoz a bal oldali leszármazottját.  
+} //A fÃ¡ban, ezzel a fÃ¼ggvÃ©nnyel hozzuk lÃ©tre egy adott gyÃ¶kÃ©rponthoz a bal oldali leszÃ¡rmazottjÃ¡t.  
 
 node* insertright(node *root, int i) {
 	root->right = newnode(i);
 	return root->right;
-} //A fában ezzel a függvénnyel hozzuk meg a gyökérnek a jobboldali leszármazottját*/
+} //A fÃ¡ban ezzel a fÃ¼ggvÃ©nnyel hozzuk meg a gyÃ¶kÃ©rnek a jobboldali leszÃ¡rmazottjÃ¡t*/
 
 node* lepes(node *root, irany k) {
 
 	switch (k) {
-	case BAL: if (root->left->idx != 0) { root = root->left; return root; } // Ha balra megyek és van ott valamilyen csomópont, akkor a bal oldali csomópontra lépek.
+	case BAL: if (root->left->idx != 0) { root = root->left; return root; } // Ha balra megyek Ã©s van ott valamilyen csomÃ³pont, akkor a bal oldali csomÃ³pontra lÃ©pek.
 			  return root;
-	case JOBB: if (root->right->idx != 0) { root = root->right; return root; } // Ha jobbra megyek és van ott valamilyen csomópont, akkor a jobb oldali csomópontra lépek.
+	case JOBB: if (root->right->idx != 0) { root = root->right; return root; } // Ha jobbra megyek Ã©s van ott valamilyen csomÃ³pont, akkor a jobb oldali csomÃ³pontra lÃ©pek.
 				return root;
 	}
-} //Ezzel a függvénnyel történik meg a léptetés, iránytól függõen
+} //Ezzel a fÃ¼ggvÃ©nnyel tÃ¶rtÃ©nik meg a lÃ©ptetÃ©s, irÃ¡nytÃ³l fÃ¼ggÅ‘en
 
 karakter penzes(karakter kalandor, int ar, int *d) {
-	char ch; //choice röviden
+	char ch; //choice rÃ¶viden
 	if (ar < 30) //Hogyha fizetunk
 	{
 		printf("A - Ha igen, B- Ha nem.: "); //Akarok fizetni?
 		scanf(" %c", &ch); //Beolvasom
 		if (ch == 'A' || ch == 'a') { //Ha igen.
-			if (kalandor.taska.penz - ar >= 0) //... és van pénzem
+			if (kalandor.taska.penz - ar >= 0) //... Ã©s van pÃ©nzem
 			{
-				kalandor.taska.penz = kalandor.taska.penz - ar;  // ... már kevesebb pénzem van
+				kalandor.taska.penz = kalandor.taska.penz - ar;  // ... mÃ¡r kevesebb pÃ©nzem van
 				switch (ar) { //cserebe kapok valamit. vagy nem.
 				case 1: printf("Segitettel a raszorulonak!"); kalandor.taska.erme += 1; break;
 				case 4:	printf("Sikeresen elelmiszerhez jutottal!"); kalandor.taska.kaja += 1; break;
@@ -115,7 +115,7 @@ karakter penzes(karakter kalandor, int ar, int *d) {
 			*d = 2;
 		}
 	}
-	else // Ha nem vásárlásról van szó, akkor pénzt vagy valamilyen tárgyak szerzünk kalandjaink során.
+	else // Ha nem vÃ¡sÃ¡rlÃ¡srÃ³l van szÃ³, akkor pÃ©nzt vagy valamilyen tÃ¡rgyak szerzÃ¼nk kalandjaink sorÃ¡n.
 	{
 		switch (ar) { 
 		case 31: kalandor.taska.penz = kalandor.taska.penz + 5; printf("+5 arany a taskaba"); break;
@@ -132,9 +132,9 @@ karakter penzes(karakter kalandor, int ar, int *d) {
 }
 
 karakter csata(karakter kalandor, int idx, creature *k, int hossz, int *d) {
-	srand(time(NULL)); // Ez azért kell, hogy ne mindig ugyanazokat a számokat "dobjam"
-	for(int i=0;i<hossz;i++) //Kiválasztom a megfelelõ lényt.
-		if (idx == k[i].idx) // A harcrendszer a megoldásvázlatban benne van, de a dokumentációba is leírom.
+	srand(time(NULL)); // Ez azÃ©rt kell, hogy ne mindig ugyanazokat a szÃ¡mokat "dobjam"
+	for(int i=0;i<hossz;i++) //KivÃ¡lasztom a megfelelÅ‘ lÃ©nyt.
+		if (idx == k[i].idx) // A harcrendszer a megoldÃ¡svÃ¡zlatban benne van, de a dokumentÃ¡ciÃ³ba is leÃ­rom.
 		{
 			int cagi, chp, kdob1, kdob2, cdob1, cdob2, kdobasok, cdobasok, crit;
 			cagi=k[i].agi;
@@ -196,7 +196,7 @@ karakter csata(karakter kalandor, int idx, creature *k, int hossz, int *d) {
 			}
 			else
 			{
-				printf("Vesztettel\n"); *d = 2; return kalandor; // == Kalandod véget ért
+				printf("Vesztettel\n"); *d = 2; return kalandor; // == Kalandod vÃ©get Ã©rt
 			}
 		}
 	return kalandor;
@@ -204,7 +204,7 @@ karakter csata(karakter kalandor, int idx, creature *k, int hossz, int *d) {
 
 void mese(node *root, story *s, int a) {
 
-	for (int i = 0; i < a; i++)  // Megfelelõ indexû szöveget kikeresem és kirakom std outputra.
+	for (int i = 0; i < a; i++)  // MegfelelÅ‘ indexÅ± szÃ¶veget kikeresem Ã©s kirakom std outputra.
 	{
 		if ((root->idx) == s[i].index)
 			printf("%s\n", s[i].szoveg);
@@ -213,7 +213,7 @@ void mese(node *root, story *s, int a) {
 	return;
 }
 
-karakter vizsgal(node *root, karakter kalandor, creature *k, int hossz, int *d) { // Azt nézi meg, hogy történik-e bármi érdekes(bolt/harc)
+karakter vizsgal(node *root, karakter kalandor, creature *k, int hossz, int *d) { // Azt nÃ©zi meg, hogy tÃ¶rtÃ©nik-e bÃ¡rmi Ã©rdekes(bolt/harc)
 	int oldal=0;
 	if ((root->boltidx)!= 0)
 	{
@@ -222,7 +222,7 @@ karakter vizsgal(node *root, karakter kalandor, creature *k, int hossz, int *d) 
 			kalandor = penzes(kalandor, root->boltidx, &oldal);
 			*d = oldal;
 		}
-		else // Ha olyasmi történik a programban, hogy elvesztjük minden pénzünket akkor nem megy bele még egy függvénybe, inkább itt megoldja.
+		else // Ha olyasmi tÃ¶rtÃ©nik a programban, hogy elvesztjÃ¼k minden pÃ©nzÃ¼nket akkor nem megy bele mÃ©g egy fÃ¼ggvÃ©nybe, inkÃ¡bb itt megoldja.
 		{
 			kalandor.taska.penz = 0;
 		}
@@ -237,7 +237,7 @@ karakter vizsgal(node *root, karakter kalandor, creature *k, int hossz, int *d) 
 	return kalandor;
 }
 
-karakter kaja(karakter kalandor) { // Hp-t lehet ezzel növelni
+karakter kaja(karakter kalandor) { // Hp-t lehet ezzel nÃ¶velni
 	if ((kalandor.taska.kaja != 0) && (kalandor.hp < 20))
 	{
 		kalandor.taska.kaja = kalandor.taska.kaja - 1;
@@ -253,7 +253,7 @@ karakter kaja(karakter kalandor) { // Hp-t lehet ezzel növelni
 
 void mivanbenne(karakter kalandor) {
 	printf("Etel:%d\nPenz:%d\nVarazsgomb:%d\nBunda:%d\nErme:%d\n", kalandor.taska.kaja, kalandor.taska.penz, kalandor.taska.gomb, kalandor.taska.bunda, kalandor.taska.erme);
-}				// TODO: BÕVÍTSD!
+}				// TODO: BÅVÃTSD!
 
 node* fatolt() {
 	FILE *fp = fopen("fa.txt", "r"); // FILE MEGNYITASA
@@ -274,7 +274,7 @@ node* fatolt() {
 		csucspontok[i].bal = bal;
 		csucspontok[i].jobb = jobb;
 
-	} // Ennél a pontnál van egy olyan pontom, ami olyan "valamit" tartalmaz amin belül rámutatunk egy node-ra + integerként tartalmazza, hogy milyen indexû nodera mutat a nodeunk.
+	} // EnnÃ©l a pontnÃ¡l van egy olyan pontom, ami olyan "valamit" tartalmaz amin belÃ¼l rÃ¡mutatunk egy node-ra + integerkÃ©nt tartalmazza, hogy milyen indexÅ± nodera mutat a nodeunk.
 	fclose(fp);
 	for (int i = 0; i < n; i++)
 	{
