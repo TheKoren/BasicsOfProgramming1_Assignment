@@ -10,8 +10,8 @@ typedef enum irany { JOBB, BAL }irany;
 
 typedef struct node {
 	int idx;
-	node *left;
-	node *right;
+	struct node *left;
+	struct node *right;
 	int harcidx;
 	int boltidx; 
 }node;
